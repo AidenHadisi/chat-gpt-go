@@ -61,3 +61,22 @@ You may provide your own custom HTTP client when creating the API instance. (Use
 ```go
     api := chatgptgo.NewApi("YOUR_API_KEY").WithClient(&http.Client{Timeout: 10 * time.Second})
 ```
+
+## Handling OpenAI API errors
+
+If you need to get details about the error returned by the OpenAI API, you can try converting the error to `OpenAiError` type.
+```go
+    response, err := api.Chat(request)
+	if err != nil {
+		var aerr *chatgptgo.ApiError
+		if errors.As(err, &aerr) {
+			// handle OpenAI API errors
+			fmt.Println(aerr.StatusCode)
+			fmt.Println(aerr.ErrorDetails.Type)
+			fmt.Println(aerr.ErrorDetails.Message)
+		} else {
+			// handle other errors
+			fmt.Println(err)
+		}
+	}
+```

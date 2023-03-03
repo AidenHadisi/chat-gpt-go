@@ -65,7 +65,9 @@ type Usage struct {
 	TotalTokens      int `json:"total_tokens"`
 }
 
+// ApiError is the error returned from OpenAI's API.
 type ApiError struct {
+	StatusCode   int           `json:"-"`
 	ErrorDetails *ErrorDetails `json:"error"`
 }
 

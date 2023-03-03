@@ -61,7 +61,9 @@ func (a *Api) Chat(r *Request) (*Response, error) {
 	}
 
 	if response.StatusCode != http.StatusOK {
-		apiError := &ApiError{}
+		apiError := &ApiError{
+			StatusCode: response.StatusCode,
+		}
 		if err := json.NewDecoder(response.Body).Decode(apiError); err != nil {
 			return nil, fmt.Errorf("request failed with status code %d", response.StatusCode)
 		}
