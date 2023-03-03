@@ -64,7 +64,7 @@ You may provide your own custom HTTP client when creating the API instance. (Use
 
 ## Handling OpenAI API errors
 
-If you need to get details about the error returned by the OpenAI API, you can try converting the error to `OpenAiError` type.
+If you need to get details about the error returned by the OpenAI API, you can try converting the error to `ApiError` type.
 ```go
     response, err := api.Chat(request)
 	if err != nil {
